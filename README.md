@@ -1,2 +1,2 @@
-# javascriptDataStructures
-Data structures and its api in javascript
+# javascript DataStructures
+All Data structures and its api(add/remove/find) in javascript.
