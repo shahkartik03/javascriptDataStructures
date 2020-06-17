@@ -4,6 +4,7 @@
 Data Structures.iml
 package.json
 package-lock.json
+index.html
 # dependencies
 /node_modules
 # production

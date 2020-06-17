@@ -42,7 +42,6 @@ const linkedList = function () {
         get data() {
             let node = this.head;
             while(node) {
-                console.log('node  ', node.previousPointer && node.previousPointer.data);
                 node = node.nextPointer;
             }
             return this.head;
@@ -107,17 +106,39 @@ const linkedList = function () {
         constructor() {
             super();
         }
+        removeAt(index) {
+            if(index === 0) {
+                this.head = this.head.nextPointer;
+                this.head.previousPointer = null;
+            } else {
+                let node = this.head;
+                let previousNode;
+                for(let i=0; i<index; i++) {
+                    previousNode = node;
+                    node = node.nextPointer;
+                }
+                previousNode.nextPointer = node.nextPointer;
+                if (node.nextPointer) {
+                    node.nextPointer.previousPointer = previousNode;
+                } else {
+                    this.tail = previousNode;
+                }
+            }
+            this.size--;
+        }
         addAt(index=0, data) {
+            debugger;
             let node;
             if(index === 0) {
                 node = new DoubleListNode(data);
                 if (this.head) {
                     node = new DoubleListNode(data, this.head);
+                    this.head.previousPointer = node;
                 }
                 this.head = node;
                 this.size++;
             } else if(index === this.size) {
-                node = new DoublyLinkedList(data);
+                node = new DoubleListNode(data);
                 if (!this.tail) {
                     node.previousPointer = this.head;
                     this.head.nextPointer = node;
